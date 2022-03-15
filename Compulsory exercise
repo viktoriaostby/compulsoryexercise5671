@@ -1,0 +1,43 @@
+def alternative_legal_bases():
+    answer_legal_basis = input("Does the processing of the data from the {} test have a legal basis in national law \n(e.g. in form of an act or a resolution)? ".format(data_in_question))
+    if answer_legal_basis in ["Yes","yes"]:
+        answer_suitable_measures = input("Are suitable and specific measures taken to safeguard \nthe data subjects right to privacy, e.g., professional secrecy? ")
+        
+        if answer_suitable_measures in ["Yes","yes"]:
+            print("The processing of the data from the {} test is lawful.".format(data_in_question))
+        elif answer_suitable_measures in ["No","no"]:
+            print("National legislation must guarantee individuals’ fundamental rights \n and the protection of their personal data for the data processing to be lawful.")
+        else:
+            print("Invalid response.")
+    elif answer_legal_basis in ["No","no"]:
+        print("The data processing requires a legal basis in national law to be lawful.")
+    else:
+        print("Invalid response.")
+ 
+data_in_question = input("Is the data collected from a PCR test or an antibody test? Please enter 'PCR' or 'antibody': ")
+
+if data_in_question in ["PCR","pcr"]:
+    print("The data is collected from a PCR test.")
+elif data_in_question in ["Antibody","antibody"]:
+    print("The data is collected from an antibody test.")
+else:
+    print("Invalid choice.")
+
+answer_consent = input("Has the data subject consented to the processing of data from the {} test? ".format(data_in_question))
+
+if answer_consent in ["Yes","yes"]:
+    answer_explicit_consent = input("Was the consent explicitly given for the purpose of the data processing? ")
+    
+    if answer_explicit_consent in ["Yes","yes"]:
+        print("The data subject has given explicit consent to the processing of data from the {} test.\n The processing is lawful.".format(data_in_question))
+    elif answer_explicit_consent in ["No","no"]:
+        print("The data processing requires explicit consent. \nThe processing is prohibited, unless another legal basis is applicable.")
+        alternative_legal_bases() 
+    else:
+        print("Invalid response.")
+
+elif answer_consent in ["No","no"]:
+    print("The data subject has not given explicit consent to the processing of data from the {} test. \nThe processing is prohibited, unledd another legal basis is applicable.".format(data_in_question))
+    alternative_legal_bases() 
+else:
+    print("Invalid response.")
